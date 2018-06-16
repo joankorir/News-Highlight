@@ -6,10 +6,21 @@ from app import app
 @app.route('/')
 def index():
 
-
-
     '''
     View root page function that returns the index page and its data
     '''
     message = 'News Highlight'
     return render_template('index.html',message = message)
+
+
+
+@app.route('/newshighlight/<int:news_id>')
+def newshighlight(news_id):
+
+
+    '''
+    View newshighlight page function that returns the news details page and its data
+    '''
+    return render_template('news.html',id =news_id)
+
+
