@@ -13,9 +13,10 @@ def index():
 
     #Getting popular news 
     popular_news = get_news('popular')
-    print(popular_news)
+    upcoming_news = get_news('upcoming')
+    now_showing_news = get_news('now_trending')
     title = 'Home - Welcome to The News Highlight Website Online'
-    return render_template('index.html',title =title,popular=popular_news)
+    return render_template('index.html',title =title,popular=popular_news ,upcoming = upcoming_news , now_showing = now_showing_news
 
 
 
