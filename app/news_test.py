@@ -3,7 +3,7 @@ from .models import news
 News = news.News
 
 
-class NewsTest(unittest.Testcase):
+class NewsTest(unittest .Testcase):
     '''
     Test Class to test the behaviour of the News classs
     '''
