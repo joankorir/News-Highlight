@@ -13,8 +13,9 @@ def index():
 
     #Getting popular news 
     popular_news = get_news('popular')
+    print(popular_news)
     title = 'Home - Welcome to The News Highlight Website Online'
-    return render_template('index.html',title =title)
+    return render_template('index.html',title =title,popular=popular_news)
 
 
 
