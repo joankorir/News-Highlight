@@ -41,9 +41,9 @@ def get_news(category):
     def process_results(news_list):
         '''
         Function that processes the news result and transform them to a list of objects
-        '''
+    
 
-     Args:
+        Args:
             news_list:A list of dictionaries that contain news details
 
         Returns:
