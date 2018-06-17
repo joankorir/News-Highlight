@@ -60,7 +60,7 @@ def get_news(category):
             if poster:
                 news_object = News(id,title,overview,poster,timeCreated)
                 news_results.append(news_object)
-        return news_results
+        return news_results 
 
 
 
