@@ -38,4 +38,7 @@ def get_news(category):
         return news_results
 
 
+    def process_results(news_list):
+
+
         
