@@ -55,9 +55,10 @@ def get_news(category):
             title = news_item.get('original_title')
             overview = news_item.get('overview')
             poster = news_item.get('poster_path')
+            timeCreated = news_item.get('timeCreated')
 
             if poster:
-                news_object = News(id,title,overview,poster)
+                news_object = News(id,title,overview,poster,timeCreated)
                 news_results.append(news_object)
         return news_results
 
