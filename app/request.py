@@ -56,6 +56,11 @@ def get_news(category):
             overview = news_item.get('overview')
             poster = news_item.get('poster_path')
 
+            if poster:
+                news_object = News(id,title,overview,poster)
+                news_results.append(news_object)
+        return news_results
+
 
 
 
