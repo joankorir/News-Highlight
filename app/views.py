@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-from request import get_news
+from .request import get_news
 
 
 #Views
@@ -10,6 +10,9 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
+
+    #Getting popular news 
+    popular_news = get_news('popular')
     title = 'Home - Welcome to The News Highlight Website Online'
     return render_template('index.html',title =title)
 
