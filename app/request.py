@@ -1,4 +1,6 @@
 from app import app
+from urllib.request,json
+from .models import news
 
-#Getting api key
-api_key = app.config['News_Api_KEY']
+
+News = news.News
