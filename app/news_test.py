@@ -22,7 +22,7 @@ class NewsTest(unittest.Testcase):
 
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     unittest.main()
 
 
