@@ -1,7 +1,9 @@
 from flask import render_template ,request,redirect, url_for
 from app import app
 from .request import get_news ,get_newsHighlight, search_newsHighlight
-
+from .models import review
+from .forms import ReviewForm
+Review = ReviewForm
 
 #Views
 @app.route('/')
@@ -22,7 +24,7 @@ def index():
     if search_newsHighlight:
         return redirect(url_for('search',newsHighlight_name=search_newsHighlight))
     else:
-    return render_template('index.html',title =title,popular=popular_news ,upcoming = upcoming_news , now_showing = now_showing_news)
+ return render_template('index.html',title =title,popular=popular_news ,upcoming = upcoming_news , now_showing = now_showing_news)
 
 
 
@@ -36,7 +38,10 @@ def newshighlight(id):
 
     newshighlight = get_news(id)
     title = f'{newshighlight.title}'
-    return render_template('news.html',title = title, newshighlight = newshighlight)
+    reviews = Review.get_reviews(newshighlight.id)
+
+
+    return render_template('news.html',title = title, newshighlight = newshighlight, reviews=reviews)
 
 
 @app.route('/search/<newsHighlight_name>')
@@ -50,4 +55,17 @@ def search(newsHighlight_name):
     title = f'search results for {newsHighlight_name}'
     return render_template('search.html',news = searched_news)
 
+@app.route('/newsHighlight/review/new/<int:id>', methods = ['GET','POST'])
+def new_review(id):
+    form = ReviewForm()
+    newshighlight = get_newsHighlight(id)
 
+    if form.validate_on_submit():
+        title = form.title.data
+        review = form.review.data
+        new_review = Review(newshighlight.id,title,newshighlight.poster,review)
+        new_review.save_review()
+        return redirect(url_for('newsHighlight',id = movie.id ))
+
+    title = f'{newshighlight.title} review'
+    return render_template('new_review.html',title = title, review_form=form, newshighlight=newshighlight)
