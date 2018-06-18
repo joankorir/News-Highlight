@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template ,request,redirect, url_for
 from app import app
 from .request import get_news ,get_newsHighlight, search_newsHighlight
 
@@ -16,6 +16,12 @@ def index():
     upcoming_news = get_news('upcoming')
     now_showing_news = get_news('now_trending')
     title = 'Home - Welcome to The News Highlight Website Online'
+
+    search_newsHighlight = request.args.get('newsHighlight_query')
+
+    if search_newsHighlight:
+        return redirect(url_for('search',newsHighlight_name=search_newsHighlight))
+    else:
     return render_template('index.html',title =title,popular=popular_news ,upcoming = upcoming_news , now_showing = now_showing_news)
 
 
