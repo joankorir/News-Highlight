@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-from .request import get_news ,get_newsHighlight
+from .request import get_news ,get_newsHighlight, search_newsHighlight
 
 
 #Views
@@ -30,6 +30,18 @@ def newshighlight(id):
 
     newshighlight = get_news(id)
     title = f'{newshighlight.title}'
-    return render_template('news.html',title = title, newshighlight)
+    return render_template('news.html',title = title, newshighlight = newshighlight)
+
+
+@app.route('/search/<newsHighlight_name>')
+def search(newsHighlight_name):
+    '''
+    View function to display the search results
+    '''
+    newsHighlight_name_list = newsHighlight_name.split(" ")
+    newsHighlight_name_format = "+".join(newsHighlight_name_list)
+    searched_news = search_newsHighlight(newsHighlight_name_format)
+    title = f'search results for {newsHighlight_name}'
+    return render_template('search.html',news = searched_news)
 
 

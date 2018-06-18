@@ -84,6 +84,22 @@ def get_news(category):
     return newsHighlight_object
 
 
+    def search_newsHighlight(newsHighlight_name):
+    search_newsHighlight_url = 'https://api.thenewsb.org/3/search/movie?api_key={}&query={}'.format(api_key,movie_name)
+    with urllib.request.urlopen(search_newsHighlight_url) as url:
+        search_newsHighlight_data = url.read()
+        search_newsHighlight_response = json.loads(search_newsHighlight_data)
+
+        search_newsHighlight_results = None
+
+        if search_newsHighlight_response['results']:
+            search_newshighlight_list = search_newsHighlight_response['results']
+            search_newsHighlight_results = process_results(search_movie_list)
+
+
+    return search_movie_results
+
+
 
 
     
