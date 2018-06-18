@@ -64,24 +64,24 @@ def get_news(category):
     
         return news_results 
 
-    def get_news(id):
-    get_news_details_url = base_url.format(id,api_key)
+    def get_newsHighlight(id):
+      get_newsHighlight_details_url = base_url.format(id,api_key)
 
-    with urllib.request.urlopen(get_news_details_url) as url:
-        news_details_data = url.read()
-        news_details_response = json.loads(news_details_data)
+    with urllib.request.urlopen(get_newsHighlight_details_url) as url:
+        newsHighlight_details_data = url.read()
+        newsHighlight_details_response = json.loads(newsHighlight_details_data)
 
-        news_object = None
-        if news_details_response:
-            id = news_details_response.get('id')
-            title = news_details_response.get('original_title')
-            overview = news_details_response.get('overview')
-            poster = news_details_response.get('poster_path')
-            timeCreated = news_details_response.get('timeCreated')
+        newsHighlight_object = None
+        if newsHighlight_details_response:
+            id = newsHighlight_details_response.get('id')
+            title = newsHighlight_details_response.get('original_title')
+            overview = newsHighlight_details_response.get('overview')
+            poster = newsHighlight_details_response.get('poster_path')
+            timeCreated = newsHighlight_details_response.get('timeCreated')
 
-            news_object = News(id,title,overview,poster,timeCreated)
+            newsHighlight_object = NewsHighlight(id,title,overview,poster,timeCreated)
 
-    return news_object
+    return newsHighlight_object
 
 
 
