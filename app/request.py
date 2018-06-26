@@ -11,38 +11,35 @@ api_key = None
 
 #Getting the news base url 
 base_url = None
-base_url = None
+article_url = None
 
 
 def configure_request(app):
-    global api_key,base_url
+    global api_key,base_url,article_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['SOURCE_API_BASE_URL']
-    base_url = app.config['ARTICLE_API_BASE_URL']
+    article_url = app.config['ARTICLE_API_BASE_URL']
 
 def get_source(category):
     '''
     Function that gets the json response to our url request
     '''
     get_source_url = base_url.format(category,api_key)
+    print (get_source_url)
 
 
     with urllib.request.urlopen(get_source_url) as url:
         get_source_data = url.read()
+        print(get_source_data)
         get_source_response = json.loads(get_source_data)
-
+        print (get_source_response)
         source_results = None
 
 
-        if get_source_response['results']:
-            source_results_list = get_source_response['results']
+        if get_source_response['sources']:
+            source_results_list = get_source_response['sources']
 
             source_results = process_results(source_results_list)
-
-
-
-
-
     return source_results
 
 
@@ -73,33 +70,33 @@ def process_results(source_list):
         
     return source_results 
 
-def get_news(id):
-    get_news_details_url = base_url.format(id,api_key)
+# def get_news(id):
+#     get_news_details_url = base_url.format(id,api_key)
 
-    with urllib.request.urlopen(get_news_details_url) as url:
-        news_details_data = url.read()
-        news_details_response = json.loads(news_details_data)
+#     with urllib.request.urlopen(get_news_details_url) as url:
+#         news_details_data = url.read()
+#         news_details_response = json.loads(news_details_data)
 
-        news_object = None
-        if news_details_response:
-            id = news_details_response.get('id')
-            name = news_details_response.get('name')
-            description = news_details_response.get('description')
-            url = news_details_response.get('url')
-            category = news_details_response.get('category')
-            language= news_details_response.get('language')
-            country = news_details_response.get('country')
+#         news_object = None
+#         if news_details_response:
+#             id = news_details_response.get('id')
+#             name = news_details_response.get('name')
+#             description = news_details_response.get('description')
+#             url = news_details_response.get('url')
+#             category = news_details_response.get('category')
+#             language= news_details_response.get('language')
+#             country = news_details_response.get('country')
 
-            news_object = Source(id,name,description,url,category,language,country)
+#             news_object = Source(id,name,description,url,category,language,country)
 
-    return news_object
+#     return news_object
 
 
 def get_article(id):
     '''
     Function that gets the json response to our url request
     '''
-    get_article_url = base_url.format(id,api_key)
+    get_article_url = article_url.format(id,api_key)
 
 
     with urllib.request.urlopen(get_article_url) as url:
@@ -113,8 +110,9 @@ def get_article(id):
             article_results_list = get_article_response['results']
 
             article_results = process_results(article_results_list)
+    return article_results
 
-def process_aticle(article_list):
+def process_article(article_list):
     '''
     Function that processes the news result and transform them to a list of objects
 
@@ -142,44 +140,24 @@ def process_aticle(article_list):
 
 
 
-def get_everything(id):
-    get_everything_details_url = base_url.format(id,api_key)
+# def get_everything(id):
+#     get_everything_details_url = base_url.format(id,api_key)
 
-    with urllib.request.urlopen(get_everything_details_url) as url:
-        everything_details_data = url.read()
-        everything_details_response = json.loads(everything_details_data)
+#     with urllib.request.urlopen(get_everything_details_url) as url:
+#         everything_details_data = url.read()
+#         everything_details_response = json.loads(everything_details_data)
 
-        everything_object = None
-        if everything_details_response:
-            # id = everything_details.get('id')
-            author = everything_details_response.get('author')
-            title = everything_details_response.get('title')
-            description = everything_details_response.get('description')
-            url = everything_details_response.get('url')
-            urlToImage= everything_details_response.get('urlToImage')
-            publishedAt = everything_details_response.get('publishedAt')
+#         everything_object = None
+#         if everything_details_response:
+#             # id = everything_details.get('id')
+#             author = everything_details_response.get('author')
+#             title = everything_details_response.get('title')
+#             description = everything_details_response.get('description')
+#             url = everything_details_response.get('url')
+#             urlToImage= everything_details_response.get('urlToImage')
+#             publishedAt = everything_details_response.get('publishedAt')
 
-            everything_object = Source(id,author,title,description,url,urlToImage,publishedAt)
+#             everything_object = Source(id,author,title,description,url,urlToImage,publishedAt)
 
-    return everything_object
-
-def search_article(article_name):
-    search_article_url = "https://newsapi.org/v2/search/article{}?api_key={}".format(api_key,article_name)
-
-    with urllib.request.urlopen(search_article_url) as url:
-        search_article_data = url.read()
-        search_article_response = json.loads(search_article_data)
-
-        search_article_results = None
-
-        if search_article_response['results']:
-            search_article_list = search_article_response['results']
-            search_article_results = process_results(search_article_list)
-
-
-    return search_article_results
-
-
-
-
+#     return everything_object
 

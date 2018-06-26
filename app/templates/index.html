@@ -10,18 +10,13 @@
         <!-- Content block -->
         {% block content %}
 
-        <div class="container">
-            <form>
-                <input type="text" name="article_query" placeholder="Search for an Article" class="form-control">
-                <input type="submit"  value="Submit" class="btn btn-default">
-            </form>
-        
-        </div>
-     
-
-         <h3> Breaking News</h3>
+         <h3> technology</h3>
           <ul>
-              {{ macro.displaySourceList(breaking_news)}}
+              {{ macro.displaySourceList(tech_news)}}
           </ul>
+         <!-- <h4> business</h4>
+          <ul>
+              {{ macro.displaySourceList(business)}}
+          </ul> -->
           {% endblock%}
     
