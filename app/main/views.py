@@ -12,10 +12,12 @@ def index():
 
     #Getting breaking news
     tech_news = get_source('technology')
+ 
+    
     #business = get_source('business')
     title = 'Home - Welcome to The News  Website Online'
 
-    return render_template('index.html',title =title, tech_news = tech_news )
+    return render_template('index.html',title =title ,tech_news =tech_news )
 
 
 
@@ -25,7 +27,7 @@ def article(id):
     View news page function that returns the details page and its data 
     '''
     article =get_article(id)
-    title =f'{title}'
+    title =f'{id}'
 
     return render_template('news.html', title = title ,article = article)
 
