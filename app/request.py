@@ -6,12 +6,12 @@ from .models import Source ,Article
 # Source = source.Source
 Article = Article
 
-#Getting api key 
+#Getting api key
 api_key = None
 
-#Getting the news base url 
+#Getting the news base url
 base_url = None
-article_url = None
+article_base_url = None
 
 
 def configure_request(app):
@@ -25,7 +25,7 @@ def get_source(category):
     Function that gets the json response to our url request
     '''
     get_source_url = base_url.format(category,api_key)
-    
+    print(get_source_url)
 
 
     with urllib.request.urlopen(get_source_url) as url:
@@ -38,7 +38,7 @@ def get_source(category):
 
         if get_source_response['sources']:
             source_results_list = get_source_response['sources']
-            
+
 
             source_results = process_results(source_results_list)
         return source_results
@@ -57,7 +57,7 @@ def process_results(source_list):
     '''
     source_results = []
     for source_item in source_list:
-        
+
         id = source_item.get('id')
         name = source_item.get('name')
         description = source_item.get('description')
@@ -65,12 +65,12 @@ def process_results(source_list):
         category = source_item.get('category')
         language = source_item.get('language')
         country = source_item.get('country')
-        
+
 
         if url:
             source_object = Source(id,name,description,url,category,language,country)
             source_results.append(source_object)
-        
+
     return source_results
 
 # def get_news(id):
@@ -99,7 +99,7 @@ def get_article(id):
     '''
     Function that gets the json response to our url request
     '''
-    get_article_url = article_url.format(id,api_key)
+    get_article_url = article_base_url.format(id,api_key)
 
 
     with urllib.request.urlopen(get_article_url) as url:
@@ -138,13 +138,13 @@ def process_article(article_list):
       if urlToImage:
             article_object = Article(author,title,description,url,urlToImage,publishedAt)
             article_results.append(article_object)
-        
-    return article_results 
+
+    return article_results
 
 
 
 def get_everything(id):
-    get_everything_details_url = base_url.format(id,api_key)
+    get_everything_details_url = article_base_url.format(id,api_key)
 
     with urllib.request.urlopen(get_everything_details_url) as url:
         everything_details_data = url.read()
@@ -159,8 +159,7 @@ def get_everything(id):
             url = everything_details_response.get('url')
             urlToImage= everything_details_response.get('urlToImage')
             publishedAt = everything_details_response.get('publishedAt')
-            
+
             everything_object = Article(author,title,description,url,urlToImage,publishedAt)
 
     return everything_object
-

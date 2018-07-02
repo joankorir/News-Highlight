@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macro%}
-<!DOCTYPE html>
 
         <!-- styles block -->
     {% block styles %}
@@ -9,14 +8,43 @@
     {% endblock %}
         <!-- Content block -->
         {% block content %}
-
-         <h3> technology</h3>
+    <div class ="container">
+      <div class ="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+         <h3>TECHNOLOGY NEWS</h3>
+         <img src="{{url_for('static',filename='img/tech.png')}}" style="height:400px;" alt="tech" class="well img-responsive b">
           <ul>
               {{ macro.displaySourceList(tech_news)}}
           </ul>
-         <!-- <h4> business</h4>
-          <ul>
-              {{ macro.displaySourceList(business)}}
-          </ul> -->
+       </div>
+       <div class ="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <h3>HEALTH NEWS</h3>
+          <img src="{{url_for('static',filename='img/health.png')}}" style="height:400px;" alt="health" class="well img-responsive b">
+           <ul>
+               {{ macro.displaySourceList(health_news)}}
+           </ul>
+        </div>
+        <div class ="ccol-xs-6 col-sm-6 col-md-6 col-lg-6ol-md-6">
+           <h3>ENTERTAINMENT NEWS</h3>
+           <img src="{{url_for('static',filename='img/enter.png')}}" style="height:400px;" alt="enter" class="well img-responsive b">
+            <ul>
+                {{ macro.displaySourceList(enter_news)}}
+            </ul>
+         </div>
+          <div class ="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+               <h3>BUSINESS NEWS</h3>
+               <img src="{{url_for('static',filename='img/biz.png')}}" style="height:400px;" alt="buss" class="well img-responsive b">
+                <ul>
+                    {{ macro.displaySourceList(business_news)}}
+                </ul>
+            </div>
+            <div class ="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <h3> SPORTS NEWS </h3>
+              <img src="{{url_for('static',filename='img/sport.png')}}" style="height:400px;" alt="sport" class="well img-responsive b">
+              <ul>
+                  {{ macro.displaySourceList(sports_news)}}
+              </ul>
+          </div>
+
+         </div>
+
           {% endblock%}
-    

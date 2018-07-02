@@ -1,10 +1,10 @@
 {% macro displaySourceList(source_list) %}
- 
-  
+
+
   {% for source in source_list %}
-  <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 source-card">
+  <div class="col-md-4">
         <h3> {{ source.name}}</h3>
-        <li> 
+        <li>
           <a href="/source/{{source.id}}">{{source.name}}</a>
         </li>
   </div>
@@ -17,13 +17,14 @@
 
 
   {% for article in article_list %}
- <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 article-card">
-    <img src="{{ article.urlToImage }}" alt="{{ article.title }} urlToImage" class="img-responsive">
-    <li class="text-center">
-        <a href="/everything/{{article.id}}">
-            {{ article.title|truncate(10)}}</a>
-    </li>
-
+<div class ="row">
+  <div class="col-md-6  urlImage" style="background: url({{everything.urlToImage}}) no-repeat; height:120px">
+  </div>
+    <div class ="col-md-6">
+       <h4>{{everything.title}}</h4>
+      <a href="{{article.url}}">
+            {{ article.description}}</a>
+     </div>
 </div>
   {% endfor %}
 
