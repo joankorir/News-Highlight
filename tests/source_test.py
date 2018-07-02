@@ -1,5 +1,6 @@
-import unittest 
+import unittest
 from .models import source
+
 Source = source.Source
 
 
@@ -10,15 +11,15 @@ class SourceTest(unittest .Testcase):
 
     def setUp(self):
         '''
-        Set up method that will run before every Test 
+        Set up method that will run before every Test
         '''
         self.new_source = Source(abc-news, ABCNews ,headlines , 'http://abcnews.go.com',general ,english, Us )
 
-        
-    def test_instancee(self):
-        self.assertTrue(isinstance(self.source_source,source)) 
 
-class Article(unittest.Testcase):
+    def test_instancee(self):
+        self.assertTrue(isinstance(self.source_source,source))
+
+class ArticleTest(unittest.Testcase):
       '''
       Test Class to test the behaviour of the Article class
       '''
