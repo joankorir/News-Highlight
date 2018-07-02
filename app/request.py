@@ -73,26 +73,6 @@ def process_results(source_list):
 
     return source_results
 
-# def get_news(id):
-#     get_news_details_url = base_url.format(id,api_key)
-
-#     with urllib.request.urlopen(get_news_details_url) as url:
-#         news_details_data = url.read()
-#         news_details_response = json.loads(news_details_data)
-
-#         news_object = None
-#         if news_details_response:
-#             id = news_details_response.get('id')
-#             name = news_details_response.get('name')
-#             description = news_details_response.get('description')
-#             url = news_details_response.get('url')
-#             category = news_details_response.get('category')
-#             language= news_details_response.get('language')
-#             country = news_details_response.get('country')
-
-#             news_object = Source(id,name,description,url,category,language,country)
-
-#     return news_object
 
 
 def get_article(id):
@@ -140,29 +120,3 @@ def process_article(article_list):
             article_results.append(article_object)
 
     return article_results
-
-
-# 
-# def get_everything(id):
-#     get_everything_details_url = article_base_url.format(id,api_key)
-#
-#     with urllib.request.urlopen(get_everything_details_url) as url:
-#         everything_details_data = url.read()
-#         everything_details_response = json.loads(everything_details_data)
-#
-#         everything_object = None
-#         everything_dict=everything_details_response['articles']
-#         if everything_details_response:
-#             id = everything_dict.get('id')
-#             author = everything_dict.get('author')
-#             title = everything_details.get('title')
-#             description = everything_details_response.get('description')
-#             url = everything_details_response.get('url')
-#             urlToImage= everything_details_response.get('urlToImage')
-#             publishedAt = everything_details_response.get('publishedAt')
-#
-#             print(everything_details_response)
-#
-#             everything_object = Article(author,title,description,url,urlToImage,publishedAt)
-#
-#     return everything_object
