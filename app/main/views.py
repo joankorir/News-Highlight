@@ -1,6 +1,6 @@
 from flask import render_template ,request,redirect, url_for
 from . import main
-from .. request import get_source , get_everything
+from .. request import get_source , get_article
 
 #Views
 @main.route('/')
@@ -25,12 +25,12 @@ def index():
 
 
 @main.route('/source/<id>')
-def everything(id):
+def article(id):
     '''
     View news page function that returns the details page and its data
     '''
-    everything = get_everything(id)
-    print(everything)
+    article = get_article(id)
+    print(article)
     title =f'{id}'
 
-    return render_template('news.html', title = title ,everything = everything)
+    return render_template('news.html', title = title ,article = article)

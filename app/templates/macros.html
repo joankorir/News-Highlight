@@ -18,10 +18,10 @@
 
   {% for article in article_list %}
 <div class ="row">
-  <div class="col-md-6  urlImage" style="background: url({{everything.urlToImage}}) no-repeat; height:120px">
+  <div class="col-md-6  urlImage" style="background: url({{article.urlToImage}}) no-repeat; height:120px">
   </div>
     <div class ="col-md-6">
-       <h4>{{everything.title}}</h4>
+       <h4>{{article.title}}</h4>
       <a href="{{article.url}}">
             {{ article.description}}</a>
      </div>

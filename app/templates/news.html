@@ -4,23 +4,22 @@
 <!-- Content block -->
 {% block content %}
 <div class="container">
-
+{{ macro.displayArticleList(article) }}
     <!-- url-->
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 urlImage" style="background: url({{everything.urlToImage}}) no-repeat; height:120px">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 urlImage" style="background: url({{article.urlToImage}}) no-repeat; height:120px">
         </div>
 
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 everything-details">
-            <h3>{{ everything.title }}</h3>
+            <h3>{{ article.title }}</h3>
 
-            <p class="name">{{ everything.description }}</p>
-            <p class="ratings"> <b> {{ everything.author}}</b> -<i>{{ everything.publishedAt }} </i> </p>
+            <p class="name">{{ article.description }}</p>
+            <p class="ratings"> <b> {{ article.author}}</b> -<i>{{ article.publishedAt }} </i> </p>
 
 
 
         </div>
     </div>
-
 </div>
 
 {% endblock %}

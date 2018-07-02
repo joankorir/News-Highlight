@@ -15,10 +15,10 @@ article_base_url = None
 
 
 def configure_request(app):
-    global api_key,base_url,article_url
+    global api_key,base_url,article_base_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['SOURCE_API_BASE_URL']
-    article_url = app.config['ARTICLE_API_BASE_URL']
+    article_base_url = app.config['ARTICLE_API_BASE_URL']
 
 def get_source(category):
     '''
@@ -142,24 +142,27 @@ def process_article(article_list):
     return article_results
 
 
-
-def get_everything(id):
-    get_everything_details_url = article_base_url.format(id,api_key)
-
-    with urllib.request.urlopen(get_everything_details_url) as url:
-        everything_details_data = url.read()
-        everything_details_response = json.loads(everything_details_data)
-
-        everything_object = None
-        if everything_details_response:
-            # id = everything_details.get('id')
-            author = everything_details_response.get('author')
-            title = everything_details_response.get('title')
-            description = everything_details_response.get('description')
-            url = everything_details_response.get('url')
-            urlToImage= everything_details_response.get('urlToImage')
-            publishedAt = everything_details_response.get('publishedAt')
-
-            everything_object = Article(author,title,description,url,urlToImage,publishedAt)
-
-    return everything_object
+# 
+# def get_everything(id):
+#     get_everything_details_url = article_base_url.format(id,api_key)
+#
+#     with urllib.request.urlopen(get_everything_details_url) as url:
+#         everything_details_data = url.read()
+#         everything_details_response = json.loads(everything_details_data)
+#
+#         everything_object = None
+#         everything_dict=everything_details_response['articles']
+#         if everything_details_response:
+#             id = everything_dict.get('id')
+#             author = everything_dict.get('author')
+#             title = everything_details.get('title')
+#             description = everything_details_response.get('description')
+#             url = everything_details_response.get('url')
+#             urlToImage= everything_details_response.get('urlToImage')
+#             publishedAt = everything_details_response.get('publishedAt')
+#
+#             print(everything_details_response)
+#
+#             everything_object = Article(author,title,description,url,urlToImage,publishedAt)
+#
+#     return everything_object
